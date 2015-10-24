@@ -10,8 +10,8 @@ $("#submit").click(function() {
                 email: $('#email').val(),
                 address: $('#address').val(),
                 coordinates: {
-                  latitude: location[0],
-                  longitude: location[1]
+                  latitude: longlat.latitude,
+                  longitude: longlat.longitude
                 },
             },
 
@@ -19,5 +19,4 @@ $("#submit").click(function() {
             dataType: "json",
 
         });
-        console.log(request);
     });
