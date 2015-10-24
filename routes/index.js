@@ -2,10 +2,19 @@ var express = require('express');
 var router = express.Router();
 var path = require('path');
 var db = require('../js/db.js');
-var sms = require('twilio')('AC5de47b0bf29da6a9b89a08f35d2c3877', '8a0c2fb532eaab6c58bda9665a2558a2'); 
+var sms = require('twilio')('AC5de47b0bf29da6a9b89a08f35d2c3877', '8a0c2fb532eaab6c58bda9665a2558a2');
+var geobing = require('geobing');
+ 
+geobing.setKey('AuOBx0ig6ttgyEVpoxLMgb9qfROJn2lzSaegxDJeBMXE9T1zoeEuBu5_87bZLG5v');
 
 router.get('/', function(req, res, next) {
 	res.render('index');
+});
+
+router.get('/admin', function(req, res, next) {
+	db.getParties({}, -1, function(response) {
+		res.render('admin', {parties: response});
+	});
 });
 
 router.get('/party/register', function(req, res, next) {
@@ -13,7 +22,6 @@ router.get('/party/register', function(req, res, next) {
 });
 
 router.get('/party/complaint', function(req, res, next) {
-	console.log("what the fuck");
 	res.render('complain');
 });
 
@@ -21,21 +29,18 @@ router.post('/party/add', function(req, res, next) {
 	db.addParty(req.body, function() {});
 	res.end();
 });
-/*
+
+router.post('/reversegeocode', function(req, res, next) {
+	geobing.reverseGeocode(req.body.latitude, req.body.longitude, function (err, result) {
+	    res.send(result); // raw response from service 
+	});
+});
+
 router.post('/party/all', function(req, res, next) {
-	if(req.body.latitude) {
-		db.getParties(req.body, 10, function(response) {
-			console.log(JSON.stringify(response));
-			res.render('complain', {parties: response});
-		});
-	}
-	else {
-		db.getParties(req.body, -1, function(response) {
-			console.log(JSON.stringify(response));
-			res.render('complain', {parties: response});
-		});
-	}
-});*/
+	db.getParties(req.body, 10, function(response) {
+		res.send(response);
+	});
+});
 
 router.post('/complain', function(req, res, next) {
 	sms.messages.create({     
@@ -47,4 +52,5 @@ router.post('/complain', function(req, res, next) {
 		console.log(err + " " + message.sid); 
 	});
 });
+
 module.exports = router;
