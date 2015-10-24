@@ -17,6 +17,24 @@ var complaints = db.get('complaints');
 }
 */
 
+function getDistance(lat1, lon1, lat2, lon2) {
+
+	var R = 6371000; // metres
+	var φ1 = lat1;
+	var φ2 = lat2;
+	var Δφ = (lat2-lat1);
+	var Δλ = (lon2-lon1);
+
+	var a = Math.sin(Δφ/2) * Math.sin(Δφ/2) +
+	        Math.cos(φ1) * Math.cos(φ2) *
+	        Math.sin(Δλ/2) * Math.sin(Δλ/2);
+	var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+
+	var d = R * c;
+
+	return d;
+}
+
 module.exports = {
 	addParty: function(party, cb) {
 		parties.updateById(
@@ -27,11 +45,13 @@ module.exports = {
 		);
 		cb();
 	},
-	getParties: function(coordinates, cb) {
+	getParties: function(coordinates, range, cb) {
 		var partiesWithinRange = [];
+		
 		parties.find({}, { stream: true })
 		.each(function(doc) {
-			partiesWithinRange.push(doc);
+			if(getDistance(coordinates.latitude, coordinates.longitude, doc.coordinates.latitude, doc.coordinates.longitude)/1609.34 < range)
+				partiesWithinRange.push(doc);
 		})
 		.success(function() {
 			cb(partiesWithinRange);

@@ -12,8 +12,8 @@ router.post('/party', function(req, res, next) {
 	res.end();
 });
 
-router.get('/parties', function(req, res, next) {
-	db.getParties(req.body.coordinates, function(response) {
+router.post('/parties', function(req, res, next) {
+	db.getParties(req.body.coordinates, .25 , function(response) {
 		res.send(response);
 	});
 });
