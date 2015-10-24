@@ -10,10 +10,15 @@ function CallRestService(request)
 function GetMap()
 {
 	// Initialize the map
-	map = new Microsoft.Maps.Map(document.getElementById("mapDiv"),{
-	credentials: "AuOBx0ig6ttgyEVpoxLMgb9qfROJn2lzSaegxDJeBMXE9T1zoeEuBu5_87bZLG5v",
-	mapTypeId: Microsoft.Maps.MapTypeId.road,
-	center: new Microsoft.Maps.Location(42.3889, -72.5278)});
+	var mapOptions = {
+	         credentials: "AuOBx0ig6ttgyEVpoxLMgb9qfROJn2lzSaegxDJeBMXE9T1zoeEuBu5_87bZLG5v",
+	         center: new Microsoft.Maps.Location(42.3889, -72.5278),
+	         mapTypeId: Microsoft.Maps.MapTypeId.road,
+	         zoom: 13,
+	         showScalebar: true
+	         }
+
+	map = new Microsoft.Maps.Map(document.getElementById("mapDiv"), mapOptions);
 }
 
 function ClickCurrentLocation(){
@@ -55,4 +60,24 @@ function GeocodeCallback(result)
 		 var pushpin = new Microsoft.Maps.Pushpin(location);
 		 map.entities.push(pushpin);
 	}
+}
+
+var typingTimer;                //timer identifier
+var doneTypingInterval = 5000;  //time in ms, 5 second for example
+var $input = $('#myInput');
+
+//on keyup, start the countdown
+$input.on('keyup', function () {
+  clearTimeout(typingTimer);
+  typingTimer = setTimeout(doneTyping, doneTypingInterval);
+});
+
+//on keydown, clear the countdown
+$input.on('keydown', function () {
+  clearTimeout(typingTimer);
+});
+
+//user is "finished typing," do something
+function doneTyping () {
+  //do something
 }
