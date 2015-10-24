@@ -1,4 +1,5 @@
 var map = null;
+var longlat = null;
 
 function CallRestService(request)
 {
@@ -56,7 +57,7 @@ function GeocodeCallback(result)
 		 map.setView({ bounds: viewBoundaries});
 
 		 // Add a pushpin at the found location
-		 location = new Microsoft.Maps.Location(result.resourceSets[0].resources[0].point.coordinates[0], result.resourceSets[0].resources[0].point.coordinates[1]);
+		 longlat = new Microsoft.Maps.Location(result.resourceSets[0].resources[0].point.coordinates[0], result.resourceSets[0].resources[0].point.coordinates[1]);
 		 var address = result.resourceSets[0].resources[0].address.formattedAddress;
 		 var pushpin = new Microsoft.Maps.Pushpin(location);
 		 map.entities.push(pushpin);
