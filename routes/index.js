@@ -14,4 +14,7 @@ router.get('/parties', function(req, res, next) {
 			res.json(data);
 	});
 });
+router.get('/map',function(req, res, next) {
+	res.render('map');
+});
 module.exports = router;
