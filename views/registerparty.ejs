@@ -1,0 +1,64 @@
+<body>
+    <div class="row">
+      <h2>Register Your Party</h2>
+      <div class="row">
+        <div class="input-field col s12">
+          <button class="btn waves-effect waves-light right" onclick="ClickCurrentLocation()" name="action">
+            <i class="material-icons">my_location</i>
+          </button>
+          <input id="address" type="text" class="validate">
+          <label for="address">Address</label>
+          <div id='mapDiv' style="position:relative; width:400; height:400px;"></div>
+        </div>
+      </div>
+      <div class="row">
+        <form class="col s12">
+          <div class="row">
+            <div class="input-field col s6">
+              <i class="material-icons prefix">email</i>
+              <input id="icon_prefix" type="text" class="validate">
+              <label for="icon_prefix">Email</label>
+            </div>
+            <div class="input-field col s6">
+              <i class="material-icons prefix">phone</i>
+              <input id="icon_telephone" type="tel" class="validate">
+              <label for="icon_telephone">Telephone</label>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="row">
+        <form class="col s12">
+          <div class="row">
+            <div class="input-field col s6">
+              <i class="material-icons prefix">today</i>
+              <input type="date" class="datepicker">
+              <label for="icon_prefix">Date</label>
+            </div>
+            <div class="input-field col s6">
+              <i class="material-icons prefix">schedule</i>
+              <input id="icon_telephone" type="time" class="validate">
+              <!-- <label for="icon_telephone">Time</label> -->
+            </div>
+          </div>
+        </form>
+      </div>
+
+
+      <button class="btn waves-effect waves-light right" type="submit" name="action">Register Party
+        <i class="material-icons right">send</i>
+      </button>
+    </div>
+
+    <br/>
+    <br/>
+  <script>
+    $('.datepicker').pickadate({
+      selectMonths: true, // Creates a dropdown to control month
+      selectYears: 15 // Creates a dropdown of 15 years to control year
+    });
+  </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/js/materialize.min.js"></script>
+</body>

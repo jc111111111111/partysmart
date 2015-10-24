@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<body>
+  <div class="row">
+      <h2>File a Complaint</h2>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="address2" type="text" class="validate">
+          <label for="address2">Address</label>
+        </div>
+      </div>
+
+      Please select the address to send your complaint to:
+      <div class="collection">
+        <a href="#!" class="collection-item">543 Respectful Lane, Amherst, MA</a>
+        <a href="#!" class="collection-item active">555 Noisy Lane, Amherst, MA</a>
+      </div>
+      <br/>
+      <!-- Modal Trigger -->
+      <a class="modal-trigger waves-effect waves-light btn right" href="#modal1">File Complaint</a>
+
+      <!-- Modal Structure -->
+      <div id="modal1" class="modal modal-fixed-footer">
+        <div class="modal-content">
+          <h4>File a Complaint</h4>
+
+          Against: <blockquote>555 Noisy Lane, Amherst, MA</blockquote>
+          <br/>
+          <div class="row">
+            <div class="input-field col s12">
+              <textarea id="textarea1" class="materialize-textarea flow-text" length="120"></textarea>
+              <label for="textarea1">Send a note to the host of the party</label>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Submit Complaint<i class="material-icons right">send</i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/js/materialize.min.js"></script>
+  <script>
+    $('.datepicker').pickadate({
+      selectMonths: true, // Creates a dropdown to control month
+      selectYears: 15 // Creates a dropdown of 15 years to control year
+    });
+
+    $(document).ready(function(){
+      // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+      $('.modal-trigger').leanModal();
+    })
+  </script>
+</body>
