@@ -6,18 +6,26 @@ var db = require('../js/db.js');
 router.get('/', function(req, res, next) {
 	res.render('index');
 });
+
 router.post('/party', function(req, res, next) {
-	console.log(JSON.stringify(req.body.item));
+	db.addParty(req.body.party, function() {});
 	res.end();
-//	db.add(req.body.data, function() {});
+});
+
+router.get('/parties', function(req, res, next) {
+	db.getParties(req.body.coordinates, function(response) {
+		res.send(response);
+	});
+});
+
+router.post('/complaint', function(req, res, next) {
+	db.addComplaint(req.body.complaint, function() {});
+	console.log("Complaint registered");
+	res.end();
 });
 
 router.get('/map',function(req, res, next) {
 	res.render('map');
-});
-
-router.put('/complaint', function(req, res, next) {
-		
 });
 
 module.exports = router;
