@@ -17,15 +17,4 @@ router.post('/parties', function(req, res, next) {
 		res.send(response);
 	});
 });
-
-router.post('/complaint', function(req, res, next) {
-	db.addComplaint(req.body.complaint, function() {});
-	console.log("Complaint registered");
-	res.end();
-});
-
-router.get('/map',function(req, res, next) {
-	res.render('map');
-});
-
 module.exports = router;
