@@ -16,7 +16,7 @@ router.get('/registerparty', function(req, res, next) {
 });
 
 router.get('/filecomplaint', function(req, res, next) {
-	res.render('filecomplaint');
+	res.render('complain');
 });
 
 router.post('/party', function(req, res, next) {
