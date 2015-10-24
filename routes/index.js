@@ -17,7 +17,7 @@ router.get('/filecomplaint', function(req, res, next) {
 });
 
 router.post('/party', function(req, res, next) {
-	db.addParty(req.body.party, function() {});
+	db.addParty(req.body, function() {});
 	res.end();
 });
 
