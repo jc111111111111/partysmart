@@ -1,3 +1,113 @@
+<head>
+  <!--Import Google Icon Font-->
+  <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!--Import materialize.css-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/css/materialize.min.css">
+
+</head>
 <body>
-hello world
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo center">Party Smart.</a>
+    </div>
+  </nav>
+  <div class="container">
+    <div class="row">
+      <h2>What would you like to do?</h2>
+      <a class="waves-effect waves-light btn-large"><i class="material-icons left">store</i>Register a Party</a>
+      <a class="waves-effect waves-light btn-large"><i class="material-icons left">warning</i>File a Complaint</a>
+    </div>
+
+    <div class="row">
+      <h2>Register Your Party</h2>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="address" type="text" class="validate">
+          <label for="address">Address</label>
+        </div>
+      </div>
+      <div class="row">
+        <form class="col s12">
+          <div class="row">
+            <div class="input-field col s6">
+              <i class="material-icons prefix">email</i>
+              <input id="icon_prefix" type="text" class="validate">
+              <label for="icon_prefix">Email</label>
+            </div>
+            <div class="input-field col s6">
+              <i class="material-icons prefix">phone</i>
+              <input id="icon_telephone" type="tel" class="validate">
+              <label for="icon_telephone">Telephone</label>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="row">
+        <form class="col s12">
+          <div class="row">
+            <div class="input-field col s6">
+              <i class="material-icons prefix">today</i>
+              <input type="date" class="datepicker">
+              <label for="icon_prefix">Date</label>
+            </div>
+            <div class="input-field col s6">
+              <i class="material-icons prefix">schedule</i>
+              <input id="icon_telephone" type="time" class="validate">
+              <!-- <label for="icon_telephone">Time</label> -->
+            </div>
+          </div>
+        </form>
+      </div>
+
+
+      <button class="btn waves-effect waves-light" type="submit" name="action">Register Party
+        <i class="material-icons right">send</i>
+      </button>
+    </div>
+
+    <div class="row">
+      <h2>File a Complaint</h2>
+
+      <div class="collection">
+        <a href="#!" class="collection-item">Alvin</a>
+        <a href="#!" class="collection-item active">Alvin</a>
+        <a href="#!" class="collection-item">Alvin</a>
+        <a href="#!" class="collection-item">Alvin</a>
+      </div>
+
+      <!-- Modal Trigger -->
+      <a class="modal-trigger waves-effect waves-light btn" href="#modal1">Modal</a>
+
+      <!-- Modal Structure -->
+      <div id="modal1" class="modal modal-fixed-footer">
+        <div class="modal-content">
+          <h4>Modal Header</h4>
+          <p>A bunch of text</p>
+        </div>
+        <div class="modal-footer">
+          <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Submit Complaint<i class="material-icons right">send</i></a>
+        </div>
+      </div>
+
+      <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+        <i class="material-icons right">send</i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Import JavaScript -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/js/materialize.min.js"></script>
+  <script>
+    $('.datepicker').pickadate({
+      selectMonths: true, // Creates a dropdown to control month
+      selectYears: 15 // Creates a dropdown of 15 years to control year
+    });
+
+    $(document).ready(function(){
+      // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+      $('.modal-trigger').leanModal();
+    })
+  </script>
 </body>
