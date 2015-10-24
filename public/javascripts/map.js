@@ -1,4 +1,5 @@
 var map = null;
+
 function CallRestService(request)
 {
 	var script = document.createElement("script");
@@ -12,6 +13,7 @@ function GetMap()
 	// Initialize the map
 	var mapOptions = {
 	         credentials: "AuOBx0ig6ttgyEVpoxLMgb9qfROJn2lzSaegxDJeBMXE9T1zoeEuBu5_87bZLG5v",
+					 //umass long & lat
 	         center: new Microsoft.Maps.Location(42.3889, -72.5278),
 	         mapTypeId: Microsoft.Maps.MapTypeId.road,
 	         zoom: 13,
@@ -54,7 +56,7 @@ function GeocodeCallback(result)
 		 map.setView({ bounds: viewBoundaries});
 
 		 // Add a pushpin at the found location
-		 var location = new Microsoft.Maps.Location(result.resourceSets[0].resources[0].point.coordinates[0], result.resourceSets[0].resources[0].point.coordinates[1]);
+		 location = new Microsoft.Maps.Location(result.resourceSets[0].resources[0].point.coordinates[0], result.resourceSets[0].resources[0].point.coordinates[1]);
 		 var address = result.resourceSets[0].resources[0].address.formattedAddress;
 		 var pushpin = new Microsoft.Maps.Pushpin(location);
 		 map.entities.push(pushpin);
@@ -62,7 +64,6 @@ function GeocodeCallback(result)
 }
 
 //Address timer
-
 var typingTimer;
 var doneTypingInterval = 1000;
 var $input = $('#address');

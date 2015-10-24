@@ -25,13 +25,13 @@
           <div class="row">
             <div class="input-field col s6">
               <i class="material-icons prefix">email</i>
-              <input id="icon_prefix" type="text" class="validate">
-              <label for="icon_prefix">Email</label>
+              <input id="email" type="text" class="validate">
+              <label for="email">Email</label>
             </div>
             <div class="input-field col s6">
               <i class="material-icons prefix">phone</i>
-              <input id="icon_telephone" type="tel" class="validate">
-              <label for="icon_telephone">Telephone</label>
+              <input id="telephone" type="tel" class="validate">
+              <label for="telephone">Telephone</label>
             </div>
           </div>
         </form>
@@ -42,12 +42,12 @@
           <div class="row">
             <div class="input-field col s6">
               <i class="material-icons prefix">today</i>
-              <input type="date" class="datepicker">
-              <label for="icon_prefix">Date</label>
+              <input id="date" type="date" class="datepicker">
+              <label for="date">Date</label>
             </div>
             <div class="input-field col s6">
               <i class="material-icons prefix">schedule</i>
-              <input id="icon_telephone" type="time" class="validate">
+              <input id="time" type="time" class="validate">
               <!-- <label for="icon_telephone">Time</label> -->
             </div>
           </div>
@@ -55,7 +55,7 @@
       </div>
 
 
-      <button class="btn waves-effect waves-light right" type="submit" name="action">Register Party
+      <button class="btn waves-effect waves-light right" id="submit" type="submit" name="action">Register Party
         <i class="material-icons right">send</i>
       </button>
     </div>
@@ -63,9 +63,12 @@
     <br/>
     <br/>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/js/materialize.min.js"></script>
   <script type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0"></script>
   <script src="/javascripts/map.js" type="text/javascript"></script>
+  <script src="/javascripts/submitparty.js" type="text/javascript"></script>
+
   <script>
     $('.datepicker').pickadate({
       selectMonths: true, // Creates a dropdown to control month

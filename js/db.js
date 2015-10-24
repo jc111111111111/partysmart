@@ -3,7 +3,7 @@ var parties = db.get('parties');
 var complaints = db.get('complaints');
 
 /*
- Schema: 
+ Schema:
  {
 	date: Date,
 	phone: String,
@@ -38,16 +38,16 @@ function getDistance(lat1, lon1, lat2, lon2) {
 module.exports = {
 	addParty: function(party, cb) {
 		parties.updateById(
-			{ address: party.address }, 
-			party, 
-			{ upsert: true }, 
+			{ address: party.address },
+			party,
+			{ upsert: true },
 			function(err, doc) { }
 		);
 		cb();
 	},
 	getParties: function(coordinates, range, cb) {
 		var partiesWithinRange = [];
-		
+
 		parties.find({}, { stream: true })
 		.each(function(doc) {
 			if(getDistance(coordinates.latitude, coordinates.longitude, doc.coordinates.latitude, doc.coordinates.longitude)/1609.34 < range)
@@ -59,9 +59,9 @@ module.exports = {
 	},
 	addComplaint: function(complaint, cb) {
 		complaints.updateById(
-			{ address: complaint.address }, 
-			complaint, 
-			{ upsert: true }, 
+			{ address: complaint.address },
+			complaint,
+			{ upsert: true },
 			function(err, doc) { }
 		);
 		cb();
