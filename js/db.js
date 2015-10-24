@@ -50,11 +50,11 @@ module.exports = {
 
 		parties.find({}, { stream: true })
 		.each(function(doc) {
-			if(getDistance(
+			if(range < 0 || getDistance(
 				coordinates.latitude, 
 				coordinates.longitude, 
-				doc.coordinates.latitude, 
-				doc.coordinates.longitude)/1609.34 < range)
+				doc.latitude, 
+				doc.longitude)/1609.34 < range)
 					partiesWithinRange.push(doc);
 		})
 		.success(function() {

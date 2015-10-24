@@ -8,32 +8,42 @@ router.get('/', function(req, res, next) {
 	res.render('index');
 });
 
-router.get('/registerparty', function(req, res, next) {
+router.get('/party/register', function(req, res, next) {
 	res.render('registerparty');
 });
 
-router.get('/filecomplaint', function(req, res, next) {
+router.get('/party/complaint', function(req, res, next) {
 	res.render('complain');
 });
 
-router.post('/party', function(req, res, next) {
+router.post('/party/add', function(req, res, next) {
 	db.addParty(req.body, function() {});
 	res.end();
 });
 
-router.post('/parties', function(req, res, next) {
-	db.getParties({latitude: 42.393402, longitude: -72.525283}, .25 , function(response) {
-		res.render('complain', {parties: response});
-	});
+router.post('/party/all', function(req, res, next) {
+	if(req.body.latitude) {
+		db.getParties(req.body, 10, function(response) {
+			console.log(JSON.stringify(response));
+			res.render('complain', {parties: response});
+		});
+	}
+	else {
+		db.getParties(req.body, -1, function(response) {
+			console.log(JSON.stringify(response));
+			res.render('complain', {parties: response});
+		});
+	}
 });
 
 router.post('/complain', function(req, res, next) {
 	sms.messages.create({     
-		body: req.body.complaint.note,
-		to: "+1 413-537-2758",
+		body: "testing",//req.body.complaint.note,
+		to: "5372758",
 		from: "+1 413-650-1988" 
 	}, function(err, message) { 
-		console.log(message.sid); 
+		n
+		console.log(err + " " + message.sid); 
 	});
 });
 module.exports = router;

@@ -1,7 +1,7 @@
 $("#submit").click(function() {
         var request = $.ajax({
 
-            url: "/party",
+            url: "/party/add",
             async: true,
             type: "POST",
             data: {
