@@ -19,7 +19,7 @@ var complaints = db.get('complaints');
 
 function getDistance(lat1, lon1, lat2, lon2) {
 
-	var R = 6371000; // metres
+	var R = 6371000; // meters
 	var φ1 = lat1;
 	var φ2 = lat2;
 	var Δφ = (lat2-lat1);
@@ -50,12 +50,17 @@ module.exports = {
 
 		parties.find({}, { stream: true })
 		.each(function(doc) {
-			if(getDistance(coordinates.latitude, coordinates.longitude, doc.coordinates.latitude, doc.coordinates.longitude)/1609.34 < range)
-				partiesWithinRange.push(doc);
+			if(getDistance(
+				coordinates.latitude, 
+				coordinates.longitude, 
+				doc.coordinates.latitude, 
+				doc.coordinates.longitude)/1609.34 < range)
+					partiesWithinRange.push(doc);
 		})
 		.success(function() {
 			cb(partiesWithinRange);
 		});
+		
 	},
 	addComplaint: function(complaint, cb) {
 		complaints.updateById(

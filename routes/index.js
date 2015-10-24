@@ -7,10 +7,6 @@ router.get('/', function(req, res, next) {
 	res.render('index');
 });
 
-router.get('/test', function(req, res, next) {
-	res.render('index1');
-});
-
 router.get('/registerparty', function(req, res, next) {
 	res.render('registerparty');
 });
