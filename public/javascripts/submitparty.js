@@ -2,19 +2,22 @@ $("#submit").click(function() {
         var request = $.ajax({
 
             url: "/party",
-            async: false,
+            async: true,
             type: "POST",
             data: {
-              party: {
-                date: getDate(),
+                date: "'92",
+                /*
                 phone: $('#telephone').val(),
                 email: $('#email').val(),
                 address: $('#address').val(),
+                */
+                phone: "12345",
+                email: "a@a.a",
+                address: "123 aa ln",
                 coordinates: {
-                  latitude: location[0],
-                  longitude: location[1]
+                  latitude: 14,
+                  longitude: 12
                 },
-              },
             },
 
             contentType: "application/x-www-form-urlencoded", //This is what made the difference.
