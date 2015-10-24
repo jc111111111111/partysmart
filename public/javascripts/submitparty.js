@@ -15,7 +15,7 @@ $("#submit").click(function() {
                 },
             },
 
-            contentType: "application/x-www-form-urlencoded", //This is what made the difference.
+            contentType: "application/x-www-form-urlencoded",
             dataType: "json",
 
         });

@@ -22,8 +22,8 @@ router.post('/party', function(req, res, next) {
 });
 
 router.post('/parties', function(req, res, next) {
-	db.getParties(req.body.coordinates, .25 , function(response) {
-		res.send(response);
+	db.getParties({latitude: 42.393402, longitude: -72.525283}, .25 , function(response) {
+		res.render('complain', {parties: response});
 	});
 });
 
