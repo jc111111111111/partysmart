@@ -1,5 +1,9 @@
 var map = null;
-var longlat = null;
+var longlat = {
+	latitude: null,
+	longitude: null
+};
+var credentials =  "AuOBx0ig6ttgyEVpoxLMgb9qfROJn2lzSaegxDJeBMXE9T1zoeEuBu5_87bZLG5v";
 
 function CallRestService(request)
 {
@@ -13,7 +17,7 @@ function GetMap()
 {
 	// Initialize the map
 	var mapOptions = {
-	         credentials: "AuOBx0ig6ttgyEVpoxLMgb9qfROJn2lzSaegxDJeBMXE9T1zoeEuBu5_87bZLG5v",
+	         credentials: credentials,
 					 //umass long & lat
 	         center: new Microsoft.Maps.Location(42.3889, -72.5278),
 	         mapTypeId: Microsoft.Maps.MapTypeId.road,
@@ -24,13 +28,31 @@ function GetMap()
 	map = new Microsoft.Maps.Map(document.getElementById("mapDiv"), mapOptions);
 }
 
-function ClickCurrentLocation(){
- var geoLocationProvider = new Microsoft.Maps.GeoLocationProvider(map);
- geoLocationProvider.getCurrentPosition();
+function CurrentLocation(){
+	map.entities.clear();
+	var geoLocationProvider = new Microsoft.Maps.GeoLocationProvider(map);
+	geoLocationProvider.getCurrentPosition();
+
+	//bing maps api cannot return current long and lat
+	navigator.geolocation.getCurrentPosition(function(position){
+		longlat.latitude = position.coords.latitude;
+		longlat.longitude = position.coords.longitude;
+
+
+		map.getCredentials(MakeBingMapsRESTRequest);
+		//var address = result.resourceSets[0].resources[0].address.formattedAddress;
+		//$("#address").val (address);
+	});
+}
+
+function MakeBingMapsRESTRequest(credentials){
+	var geocodeRequest = "http://dev.virtualearth.net/REST/v1/Locations/" + longlat.latitude + "," + longlat.longitude + "?o=json&key=" + credentials;
+	CallRestService(geocodeRequest);
 }
 
 function ClickGeocode(credentials)
 {
+	map.entities.clear();
 	map.getCredentials(MakeGeocodeRequest);
 }
 
@@ -44,7 +66,7 @@ function MakeGeocodeRequest(credentials)
 
 function GeocodeCallback(result)
 {
-
+	console.log(result);
 	if (result &&
 				 result.resourceSets &&
 				 result.resourceSets.length > 0 &&
@@ -57,10 +79,14 @@ function GeocodeCallback(result)
 		 map.setView({ bounds: viewBoundaries});
 
 		 // Add a pushpin at the found location
-		 longlat = new Microsoft.Maps.Location(result.resourceSets[0].resources[0].point.coordinates[0], result.resourceSets[0].resources[0].point.coordinates[1]);
+		 var location = new Microsoft.Maps.Location(result.resourceSets[0].resources[0].point.coordinates[0], result.resourceSets[0].resources[0].point.coordinates[1]);
 		 var address = result.resourceSets[0].resources[0].address.formattedAddress;
 		 var pushpin = new Microsoft.Maps.Pushpin(location);
 		 map.entities.push(pushpin);
+
+		 longlat = location;
+		 $("#address").val (address);
+
 	}
 }
 

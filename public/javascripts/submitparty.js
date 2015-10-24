@@ -9,14 +9,11 @@ $("#submit").click(function() {
                 phone: $('#telephone').val(),
                 email: $('#email').val(),
                 address: $('#address').val(),
-                coordinates: {
-                  latitude: longlat.latitude,
-                  longitude: longlat.longitude
-                },
-            },
+                latitude: longlat.latitude,
+                longitude: longlat.longitude
+              },
 
             contentType: "application/x-www-form-urlencoded",
             dataType: "json",
-
         });
     });
