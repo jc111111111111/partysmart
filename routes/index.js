@@ -13,6 +13,7 @@ router.get('/party/register', function(req, res, next) {
 });
 
 router.get('/party/complaint', function(req, res, next) {
+	console.log("what the fuck");
 	res.render('complain');
 });
 
@@ -20,7 +21,7 @@ router.post('/party/add', function(req, res, next) {
 	db.addParty(req.body, function() {});
 	res.end();
 });
-
+/*
 router.post('/party/all', function(req, res, next) {
 	if(req.body.latitude) {
 		db.getParties(req.body, 10, function(response) {
@@ -34,7 +35,7 @@ router.post('/party/all', function(req, res, next) {
 			res.render('complain', {parties: response});
 		});
 	}
-});
+});*/
 
 router.post('/complain', function(req, res, next) {
 	sms.messages.create({     

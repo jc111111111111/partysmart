@@ -12,23 +12,17 @@
   <div class="row">
       <h2>File a Complaint</h2>
 
-      <% if(!parties) { %>
       <div class="row">
         <div class="input-field col s12">
           <input id="address2" type="text" class="validate">
           <label for="address2">Address</label>
         </div>
       </div>
-      <% } else { %>
       Please select the address to send your complaint to:
       <div class="collection">
-    <% parties.forEach(function(party) { %>
-        <a href="#!" class="collection-item"><%= party.address %></a>
-    <% }); %>
-        <!--<a href="#!" class="collection-item">543 Respectful Lane, Amherst, MA</a>
-        <a href="#!" class="collection-item active">555 Noisy Lane, Amherst, MA</a>-->
+        <a href="#!" class="collection-item">543 Respectful Lane, Amherst, MA</a>
+        <a href="#!" class="collection-item active">555 Noisy Lane, Amherst, MA</a>
       </div>
-      <% } %>
       <br/>
       <!-- Modal Trigger -->
       <a class="modal-trigger waves-effect waves-light btn right" href="#modal1">File Complaint</a>
