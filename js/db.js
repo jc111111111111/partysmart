@@ -1,11 +1,9 @@
-var db = require('monk')('localhost:27017/courses');
-var courses = db.get('courses');
+var db = require('monk')('mongodb://admin:admin@ds048878.mongolab.com:48878/partysmart');
+var parties = db.get('parties');
 
 module.exports = {
-	update: function(course, cb) {
-		courses.updateById({id: course.title}, course, {upsert: true}, function(err, doc) { });
-	},
-	find: function(cb) {
-		courses.find({}, {}, cb);
+	add: function(party, cb) {
+		parties.add(party);
+		cb();
 	}
 };

@@ -6,15 +6,18 @@ var db = require('../js/db.js');
 router.get('/', function(req, res, next) {
 	res.render('index');
 });
-router.get('/parties', function(req, res, next) {
-	db.find(function(err, data) {
-		if(err)
-			console.log(err);
-		else
-			res.json(data);
-	});
+router.post('/party', function(req, res, next) {
+	console.log(JSON.stringify(req.body.item));
+	res.end();
+//	db.add(req.body.data, function() {});
 });
+
 router.get('/map',function(req, res, next) {
 	res.render('map');
 });
+
+router.put('/complaint', function(req, res, next) {
+		
+});
+
 module.exports = router;
