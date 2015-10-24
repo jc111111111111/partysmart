@@ -1,11 +1,15 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <head>
   <!--Import Google Icon Font-->
   <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <!--Import materialize.css-->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/css/materialize.min.css">
+  <script type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0"></script>
+  <script src="/javascripts/map.js" type="text/javascript"></script>
 
 </head>
-<body>
+<body onload="GetMap();">
   <nav>
     <div class="nav-wrapper">
       <a href="#" class="brand-logo center">Party Smart.</a>
@@ -32,8 +36,12 @@
       <h2>Register Your Party</h2>
       <div class="row">
         <div class="input-field col s12">
+          <button class="btn waves-effect waves-light right" onclick="ClickCurrentLocation()" name="action">
+            <i class="material-icons">my_location</i>
+          </button>
           <input id="address" type="text" class="validate">
           <label for="address">Address</label>
+          <div id='mapDiv' style="position:relative; width:800; height:400px;"></div>
         </div>
       </div>
       <div class="row">
