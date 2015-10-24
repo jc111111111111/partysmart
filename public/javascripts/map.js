@@ -34,7 +34,7 @@ function ClickGeocode(credentials)
 function MakeGeocodeRequest(credentials)
 {
 
-	var geocodeRequest = "http://dev.virtualearth.net/REST/v1/Locations?query=" + encodeURI(document.getElementById('txtQuery').value) + "&output=json&jsonp=GeocodeCallback&key=" + credentials;
+	var geocodeRequest = "http://dev.virtualearth.net/REST/v1/Locations?query=" + encodeURI(document.getElementById('address').value) + "&output=json&jsonp=GeocodeCallback&key=" + credentials;
 
 	CallRestService(geocodeRequest);
 }
@@ -56,28 +56,24 @@ function GeocodeCallback(result)
 		 // Add a pushpin at the found location
 		 var location = new Microsoft.Maps.Location(result.resourceSets[0].resources[0].point.coordinates[0], result.resourceSets[0].resources[0].point.coordinates[1]);
 		 var address = result.resourceSets[0].resources[0].address.formattedAddress;
-		 console.log(address);
 		 var pushpin = new Microsoft.Maps.Pushpin(location);
 		 map.entities.push(pushpin);
 	}
 }
 
-var typingTimer;                //timer identifier
-var doneTypingInterval = 5000;  //time in ms, 5 second for example
-var $input = $('#myInput');
+//Address timer
+
+var typingTimer;
+var doneTypingInterval = 1000;
+var $input = $('#address');
 
 //on keyup, start the countdown
 $input.on('keyup', function () {
   clearTimeout(typingTimer);
-  typingTimer = setTimeout(doneTyping, doneTypingInterval);
+  typingTimer = setTimeout(ClickGeocode, doneTypingInterval);
 });
 
 //on keydown, clear the countdown
 $input.on('keydown', function () {
   clearTimeout(typingTimer);
 });
-
-//user is "finished typing," do something
-function doneTyping () {
-  //do something
-}
