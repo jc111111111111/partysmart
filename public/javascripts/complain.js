@@ -31,7 +31,7 @@ function RequestParties() {
   });
 
   $('#loading').text("");
-	if(!request.responseJSON.party){
+	if(request.responseJSON.length == 0){
 		  $('#loading').append("No parties around you");
 	} else {
   	request.responseJSON.forEach(function(party) {
