@@ -3,6 +3,9 @@ $(document).ready(function(){
 });
 
 $("#submit").click(function() {
+        if($(".datepicker").val() == "" ||  $('#telephone').val() == "" || $('#address').val() == ""){
+          $('#modalFailure').openModal();
+        } else{
         var request = $.ajax({
 
             url: "/party/add",
@@ -20,6 +23,6 @@ $("#submit").click(function() {
             contentType: "application/x-www-form-urlencoded",
             dataType: "json",
         });
-
         $('#modalSuccess').openModal();
+      }
     });
