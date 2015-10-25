@@ -26,7 +26,7 @@ router.get('/party/complaint', function(req, res, next) {
 });
 
 router.post('/party/add', function(req, res, next) {
-	if(req.body.latitude && req.body.address && req.body.email && req.body.date && req.body.phone && req.body.time)
+	if(req.body.latitude && req.body.address && req.body.date && req.body.phone && req.body.time)
 		db.addParty(req.body, function() {});
 	else
 		res.send(false);
@@ -47,7 +47,9 @@ router.post('/party/all', function(req, res, next) {
 
 router.post('/text', function(req, res, next) {
 	db.addComplaint(req.body, function() {});
+	console.log(req.body.address);
 	db.getNumber(req.body.address, function(result) {
+		console.log(result);
 		res.end();
 		sms.messages.create({
 			body: req.body.note,
