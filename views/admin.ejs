@@ -11,6 +11,7 @@
   <div class="container">
   <div class="row">
       <h2>Admin</h2>
+      <h3>Parties</h3>
       <div class="collection">
        <% parties.forEach(function(party) { %>
            <a href="#!" class="collection-item">
@@ -18,6 +19,17 @@
               <%= party.date %> </br>
               <%= party.email %> </br>
               <%= party.phone %> </br>
+            </a>
+       <% }); %>
+      </div>
+      <br/>
+      <h3>Complaints</h3>
+      <div class="collection">
+       <% complaints.forEach(function(complaint) { %>
+           <a href="#!" class="collection-item">
+              <%= complaint.address %> </br>
+              <%= complaint.time %> </br>
+              "<%= complaint.note %>" </br>
             </a>
        <% }); %>
       </div>

@@ -50,6 +50,9 @@ module.exports = {
 			cb(doc);
 		});
 	},
+	getComplaints: function(cb) {
+		complaints.find({}, function(err, docs) {cb(docs);});
+	},
 	getParties: function(coordinates, range, cb) {
 		var partiesWithinRange = [];
 
