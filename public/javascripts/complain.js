@@ -26,10 +26,8 @@ function RequestParties() {
       contentType: "application/x-www-form-urlencoded",
       dataType: "json",
   });
-  console.log(request);
-  console.log(request.responseJSON);
+  
   request.responseJSON.forEach(function(party) {
     $('.collection').append("<a href='#!' class='collection-item'>" + party.address + "</a>")
   });
-        //<a href="#!" class="collection-item">543 Respectful Lane, Amherst, MA</a>
 }

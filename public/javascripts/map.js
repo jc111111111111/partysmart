@@ -31,24 +31,38 @@ function GetMap()
 function CurrentLocation(){
 	map.entities.clear();
 	var geoLocationProvider = new Microsoft.Maps.GeoLocationProvider(map);
-	geoLocationProvider.getCurrentPosition();
+	geoLocationProvider.getCurrentPosition({ successCallback: ZoomIn});
 
 	//bing maps api cannot return current long and lat
 	navigator.geolocation.getCurrentPosition(function(position){
 		longlat.latitude = position.coords.latitude;
 		longlat.longitude = position.coords.longitude;
 
+		  request = $.ajax({
+		      url: "/reversegeocode",
+		      async: false,
+		      type: "POST",
+		      data: {
+		          latitude: longlat.latitude,
+		          longitude: longlat.longitude,
+		        },
 
-		map.getCredentials(MakeBingMapsRESTRequest);
-		//var address = result.resourceSets[0].resources[0].address.formattedAddress;
-		//$("#address").val (address);
+		      contentType: "application/x-www-form-urlencoded",
+		      dataType: "json",
+		  });
+
+		var address = JSON.parse(request.responseText).resourceSets[0].resources[0].address.formattedAddress;
+		 $("#address").val (address);
 	});
 }
 
-function MakeBingMapsRESTRequest(credentials){
-	var geocodeRequest = "http://dev.virtualearth.net/REST/v1/Locations/" + longlat.latitude + "," + longlat.longitude + "?o=json&key=" + credentials;
-	CallRestService(geocodeRequest);
+function ZoomIn(args) {
+		map.setView({
+		zoom: 18,
+		center: args.center
+	});
 }
+
 
 function ClickGeocode(credentials)
 {
@@ -66,7 +80,6 @@ function MakeGeocodeRequest(credentials)
 
 function GeocodeCallback(result)
 {
-	console.log(result);
 	if (result &&
 				 result.resourceSets &&
 				 result.resourceSets.length > 0 &&
@@ -76,13 +89,14 @@ function GeocodeCallback(result)
 		 // Set the map view using the returned bounding box
 		 var bbox = result.resourceSets[0].resources[0].bbox;
 		 var viewBoundaries = Microsoft.Maps.LocationRect.fromLocations(new Microsoft.Maps.Location(bbox[0], bbox[1]), new Microsoft.Maps.Location(bbox[2], bbox[3]));
-		 map.setView({ bounds: viewBoundaries});
+
 
 		 // Add a pushpin at the found location
 		 var location = new Microsoft.Maps.Location(result.resourceSets[0].resources[0].point.coordinates[0], result.resourceSets[0].resources[0].point.coordinates[1]);
 		 var address = result.resourceSets[0].resources[0].address.formattedAddress;
 		 var pushpin = new Microsoft.Maps.Pushpin(location);
 		 map.entities.push(pushpin);
+		 map.setView({ bounds: viewBoundaries});
 
 		 longlat = location;
 		 $("#address").val (address);
