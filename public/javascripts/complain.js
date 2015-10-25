@@ -31,9 +31,13 @@ function RequestParties() {
   });
 
   $('#loading').text("");
-  request.responseJSON.forEach(function(party) {
-    $('.collection').append("<a href='#!' onclick='complain(this)' class='collection-item'>" + party.address + "</a>")
-  });
+	if(!request.responseJSON.party){
+		  $('#loading').append("No parties around you");
+	} else {
+  	request.responseJSON.forEach(function(party) {
+    	$('.collection').append("<a href='#!' onclick='complain(this)' class='collection-item'>" + party.address + "</a>")
+  	});
+	}
 }
 
   function complain(element) {
