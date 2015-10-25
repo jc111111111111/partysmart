@@ -45,6 +45,11 @@ module.exports = {
 		);
 		cb();
 	},
+	getNumber: function(address, cb) {
+		parties.findById(address, function(err, doc) {
+			cb(doc);
+		});
+	},
 	getParties: function(coordinates, range, cb) {
 		var partiesWithinRange = [];
 
