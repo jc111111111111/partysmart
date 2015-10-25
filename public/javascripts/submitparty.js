@@ -1,3 +1,7 @@
+$(document).ready(function(){
+  $('.modal-trigger').leanModal();
+});
+
 $("#submit").click(function() {
         var request = $.ajax({
 
@@ -16,4 +20,6 @@ $("#submit").click(function() {
             contentType: "application/x-www-form-urlencoded",
             dataType: "json",
         });
+
+        $('#modalSuccess').openModal();
     });

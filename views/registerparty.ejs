@@ -17,7 +17,7 @@
             <i class="material-icons">my_location</i>
           </button>
           <input id="address" type="text" class="validate">
-          <label for="address">Address</label>
+          <label for="address">*Address</label>
           <div id='mapDiv' style="position:relative; width:400; height:400px;"></div>
         </div>
       </div>
@@ -32,7 +32,7 @@
             <div class="input-field col s6">
               <i class="material-icons prefix">phone</i>
               <input id="telephone" type="tel" class="validate">
-              <label for="telephone">Telephone</label>
+              <label for="telephone">*Telephone</label>
             </div>
           </div>
         </form>
@@ -44,7 +44,7 @@
             <div class="input-field col s6">
               <i class="material-icons prefix">today</i>
               <input id="date" type="date" class="datepicker">
-              <label for="date">Date</label>
+              <label for="date">*Date</label>
             </div>
             <div class="input-field col s6">
               <i class="material-icons prefix">schedule</i>
@@ -58,6 +58,19 @@
       <button class="btn waves-effect waves-light right" id="submit" type="submit" name="action">Register Party
         <i class="material-icons right">send</i>
       </button>
+    </div>
+
+    <!-- Modal Structure -->
+    <div id="modalSuccess" class="modal">
+      <div class="modal-content">
+        <h4 style="text-align: center; color:green">Party Registered!</h4>
+      </div>
+    </div>
+
+    <div id="modalFailure" class="modal">
+      <div class="modal-content">
+        <h4 style="text-align: center; color:red">Please fill out all of the required fields</h4>
+      </div>
     </div>
 
     <br/>
