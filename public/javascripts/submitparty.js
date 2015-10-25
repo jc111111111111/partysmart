@@ -2,7 +2,7 @@ $("#submit").click(function() {
         var request = $.ajax({
 
             url: "/party/add",
-            async: true,
+            async: false,
             type: "POST",
             data: {
                 date: $(".datepicker").val(),

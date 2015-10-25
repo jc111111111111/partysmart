@@ -34,5 +34,6 @@ function RequestParties() {
 }
 
   function complain(element) {
+    console.log(element);
       $('.modal-trigger').leanModal();
   }

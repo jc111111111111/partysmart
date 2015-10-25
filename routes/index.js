@@ -26,7 +26,8 @@ router.get('/party/complaint', function(req, res, next) {
 });
 
 router.post('/party/add', function(req, res, next) {
-	db.addParty(req.body, function() {});
+	if(req.body)
+		db.addParty(req.body, function() {});
 	res.end();
 });
 
