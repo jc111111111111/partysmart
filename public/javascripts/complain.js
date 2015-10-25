@@ -12,16 +12,7 @@ $(document).ready(function() {
  });
 });
 
-$(document).on("click","#active", function() {
-  $(this).attr("class","collection-item");
-});
-
-$(document).on("click",".collection-item", function() {
-  $(this).attr("class","collection-item active");
-});
-
 function RequestParties() {
-
 
   request = $.ajax({
       url: "/party/all",
@@ -38,6 +29,10 @@ function RequestParties() {
 
   $('.collection').val("");
   request.responseJSON.forEach(function(party) {
-    $('.collection').append("<a href='#!' class='collection-item'>" + party.address + "</a>")
+    $('.collection').append("<a href='#!' onclick='complain(this)' class='collection-item'>" + party.address + "</a>")
   });
 }
+
+  function complain(element) {
+      $('.modal-trigger').leanModal();
+  }
