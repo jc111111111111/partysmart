@@ -29,8 +29,7 @@ function RequestParties() {
       contentType: "application/x-www-form-urlencoded",
       dataType: "json",
   });
-
-  $('.collection').val("");
+  $('#loading').text("");
   request.responseJSON.forEach(function(party) {
     $('.collection').append("<a href='#!' onclick='complain(this)' class='collection-item'>" + party.address + "</a>")
   });
