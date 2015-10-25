@@ -22,6 +22,7 @@ $(document).on("click",".collection-item", function() {
 
 function RequestParties() {
 
+
   request = $.ajax({
       url: "/party/all",
       async: false,
@@ -34,6 +35,8 @@ function RequestParties() {
       contentType: "application/x-www-form-urlencoded",
       dataType: "json",
   });
+
+  $('.collection').val("");
   request.responseJSON.forEach(function(party) {
     $('.collection').append("<a href='#!' class='collection-item'>" + party.address + "</a>")
   });

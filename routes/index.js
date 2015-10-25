@@ -42,10 +42,10 @@ router.post('/party/all', function(req, res, next) {
 	});
 });
 
-router.post('/complain', function(req, res, next) {
+router.post('/text', function(req, res, next) {
 	sms.messages.create({
-		body: "testing",//req.body.complaint.note,
-		to: "5372758",
+		body: req.body.note,
+		to: req.body.number,
 		from: "+1 413-650-1988"
 	}, function(err, message) {
 		console.log(err + " " + message.sid);
