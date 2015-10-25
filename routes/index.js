@@ -26,11 +26,8 @@ router.get('/party/complaint', function(req, res, next) {
 });
 
 router.post('/party/add', function(req, res, next) {
-	if(req.body.latitude && req.body.address && req.body.date && req.body.phone && req.body.time)
 		db.addParty(req.body, function() {});
-	else
-		res.send(false);
-	res.send(true);
+		res.end();
 });
 
 router.post('/reversegeocode', function(req, res, next) {
