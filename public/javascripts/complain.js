@@ -12,6 +12,14 @@ $(document).ready(function() {
  });
 });
 
+$(document).on("click","#active", function() {
+  $(this).attr("class","collection-item");
+});
+
+$(document).on("click",".collection-item", function() {
+  $(this).attr("class","collection-item active");
+});
+
 function RequestParties() {
 
   request = $.ajax({
@@ -26,7 +34,6 @@ function RequestParties() {
       contentType: "application/x-www-form-urlencoded",
       dataType: "json",
   });
-  
   request.responseJSON.forEach(function(party) {
     $('.collection').append("<a href='#!' class='collection-item'>" + party.address + "</a>")
   });
