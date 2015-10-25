@@ -71,10 +71,8 @@ module.exports = {
 		
 	},
 	addComplaint: function(complaint, cb) {
-		complaints.updateById(
-			{ address: complaint.address },
+		complaints.insert(
 			complaint,
-			{ upsert: true },
 			function(err, doc) { }
 		);
 		cb();
