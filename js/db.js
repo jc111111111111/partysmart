@@ -46,8 +46,7 @@ module.exports = {
 		cb();
 	},
 	getNumber: function(address, cb) {
-		parties.findById(address, function(err, doc) {
-			console.log(doc);
+		parties.findOne({address: address}).on('success', function(doc) {
 			cb(doc);
 		});
 	},
