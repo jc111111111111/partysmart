@@ -12,7 +12,6 @@ $("#submit").click(function() {
           $('#modalFailure').openModal();
         } else{
         var request = $.ajax({
-
             url: "/party/add",
             async: false,
             type: "POST",
@@ -21,6 +20,7 @@ $("#submit").click(function() {
                 phone: $('#telephone').val(),
                 email: $('#email').val(),
                 address: $('#address').val(),
+                time: $('#time').val(),
                 latitude: longlat.latitude,
                 longitude: longlat.longitude
               },
