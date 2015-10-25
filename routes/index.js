@@ -4,7 +4,7 @@ var path = require('path');
 var db = require('../js/db.js');
 var sms = require('twilio')('AC5de47b0bf29da6a9b89a08f35d2c3877', '8a0c2fb532eaab6c58bda9665a2558a2');
 var geobing = require('geobing');
- 
+
 geobing.setKey('AuOBx0ig6ttgyEVpoxLMgb9qfROJn2lzSaegxDJeBMXE9T1zoeEuBu5_87bZLG5v');
 
 router.get('/', function(req, res, next) {
@@ -26,13 +26,14 @@ router.get('/party/complaint', function(req, res, next) {
 });
 
 router.post('/party/add', function(req, res, next) {
-	db.addParty(req.body, function() {});
+	if(req.body)
+		db.addParty(req.body, function() {});
 	res.end();
 });
 
 router.post('/reversegeocode', function(req, res, next) {
 	geobing.reverseGeocode(req.body.latitude, req.body.longitude, function (err, result) {
-	    res.send(result); // raw response from service 
+	    res.send(result); // raw response from service
 	});
 });
 
