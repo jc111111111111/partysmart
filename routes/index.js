@@ -31,7 +31,7 @@ router.get('/party/complaint', function(req, res, next) {
 router.post('/party/add', function(req, res, next) {
 		db.addParty(req.body, function() {});
 		sms.messages.create({
-			body: "Your party at " + req.body.address + " has been registered. You will be notified of any complaints through this number. Have fun!",
+			body: "Your party at " + req.body.address + " has been registered. We will supply you with a delivery of toilet paper and water shortly. You will be notified of any complaints through this number. Have fun!",
 			to: req.body.phone,
 			from: "+1 413-650-1988"
 		}, function(err, message) {});
@@ -51,13 +51,11 @@ router.post('/party/all', function(req, res, next) {
 });
 
 router.post('/text', function(req, res, next) {
-	var complaint = req.body;
-	complaint.time = new Date().toLocaleString();
-	db.addComplaint(complaint, function() {});
+	db.addComplaint(req.body, function() {});
 	db.getNumber(req.body.address, function(result) {
 		res.end();
 		sms.messages.create({
-			body: req.body.note || "You have received a warning about your party. Please quiet down or disperse.",
+			body: "You have received a complaint about your party: " + req.body.note || "You have received a warning about your party. Please quiet down or disperse.",
 			to: result.phone,
 			from: "+1 413-650-1988"
 		}, function(err, message) {});

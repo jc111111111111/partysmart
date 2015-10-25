@@ -6,7 +6,8 @@ $("#submit").click(function() {
             type: "POST",
             data: {
               address: $('#address').text(),
-              note: $('#textarea').val()
+              note: $('#textarea').val(),
+              time: new Date().toLocaleString()
               },
 
             contentType: "application/x-www-form-urlencoded",
