@@ -47,13 +47,11 @@ router.post('/party/all', function(req, res, next) {
 
 router.post('/text', function(req, res, next) {
 	db.addComplaint(req.body, function() {});
-	console.log(req.body.address);
 	db.getNumber(req.body.address, function(result) {
-		console.log(result);
 		res.end();
 		sms.messages.create({
 			body: req.body.note,
-			to: result.number,
+			to: result.phone,
 			from: "+1 413-650-1988"
 		}, function(err, message) {
 			console.log(err + " " + message.sid);
