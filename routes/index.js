@@ -26,9 +26,11 @@ router.get('/party/complaint', function(req, res, next) {
 });
 
 router.post('/party/add', function(req, res, next) {
-	if(req.body)
+	if(req.body.latitude && req.body.address && req.body.date && req.body.phone && req.body.time)
 		db.addParty(req.body, function() {});
-	res.end();
+	else
+		res.send(false);
+	res.send(true);
 });
 
 router.post('/reversegeocode', function(req, res, next) {
@@ -44,13 +46,19 @@ router.post('/party/all', function(req, res, next) {
 });
 
 router.post('/text', function(req, res, next) {
-	sms.messages.create({
-		body: req.body.note,
-		to: req.body.number,
-		from: "+1 413-650-1988"
-	}, function(err, message) {
-		console.log(err + " " + message.sid);
-	});
+	db.addComplaint(req.body, function() {});
+	console.log(req.body.address);
+	db.getNumber(req.body.address, function(result) {
+		console.log(result);
+		res.end();
+		sms.messages.create({
+			body: req.body.note,
+			to: result.number,
+			from: "+1 413-650-1988"
+		}, function(err, message) {
+			console.log(err + " " + message.sid);
+		});
+	})
 });
 
 module.exports = router;
