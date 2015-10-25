@@ -1,7 +1,7 @@
 $(document).ready(function(){
   $('.modal-trigger').leanModal();
   $('.datepicker').pickadate({
-    selectMonths: true, // Creates a dropdown to control month
+    selectMonths: true,
     selectYears: 1,
     min: true
   });
