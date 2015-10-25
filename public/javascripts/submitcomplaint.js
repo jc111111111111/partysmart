@@ -5,12 +5,8 @@ $("#submit").click(function() {
             async: true,
             type: "POST",
             data: {
-                date: $(".datepicker").val(),
-                phone: $('#telephone').val(),
-                email: $('#email').val(),
-                address: $('#address').val(),
-                latitude: longlat.latitude,
-                longitude: longlat.longitude
+              address: $('#address').text(),
+              note: $('#textarea')
               },
 
             contentType: "application/x-www-form-urlencoded",
