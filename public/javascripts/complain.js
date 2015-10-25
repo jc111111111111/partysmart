@@ -27,5 +27,5 @@ function RequestParties() {
       dataType: "json",
   });
 
-  console.log(request);
+  request.responseText
 }
