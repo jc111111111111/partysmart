@@ -37,7 +37,7 @@ router.post('/reversegeocode', function(req, res, next) {
 });
 
 router.post('/party/all', function(req, res, next) {
-	db.getParties(req.body, 10, function(response) {
+	db.getParties(req.body, -1, function(response) {
 		res.send(response);
 	});
 });
@@ -48,7 +48,6 @@ router.post('/complain', function(req, res, next) {
 		to: "5372758",
 		from: "+1 413-650-1988"
 	}, function(err, message) {
-		n
 		console.log(err + " " + message.sid);
 	});
 });

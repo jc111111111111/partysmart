@@ -26,6 +26,8 @@ function RequestParties() {
       contentType: "application/x-www-form-urlencoded",
       dataType: "json",
   });
-
-  request.responseText
+  
+  request.responseJSON.forEach(function(party) {
+    $('.collection').append("<a href='#!' class='collection-item'>" + party.address + "</a>")
+  });
 }
