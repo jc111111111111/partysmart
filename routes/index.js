@@ -27,6 +27,14 @@ router.get('/party/complaint', function(req, res, next) {
 
 router.post('/party/add', function(req, res, next) {
 		db.addParty(req.body, function() {});
+		console.log(req.body.address + " " + req.body.phone);
+		sms.messages.create({
+			body: "Your party at " + req.body.address + " has been registered. You will be notified of any complaints through this number. Have fun!",
+			to: req.body.phone,
+			from: "+1 413-650-1988"
+		}, function(err, message) {
+			console.log(err + " " + message.sid);
+		});
 		res.end();
 });
 
@@ -47,7 +55,7 @@ router.post('/text', function(req, res, next) {
 	db.getNumber(req.body.address, function(result) {
 		res.end();
 		sms.messages.create({
-			body: req.body.note,
+			body: req.body.note || "You have received a warning about your party. Please quiet down or disperse.",
 			to: result.phone,
 			from: "+1 413-650-1988"
 		}, function(err, message) {
